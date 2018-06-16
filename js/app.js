@@ -23,7 +23,7 @@ $(document).ready(function () {
 
         console.log(name);
 
-        database.ref().set({
+        database.ref().push({
             name: name,
             role: role,
             startDate: startDate,
@@ -33,14 +33,17 @@ $(document).ready(function () {
     })
 })
 
-database.ref().on('value', function(snapshot) {
+database.ref().on('child_added', function (snapshot) {
+
     let employee = snapshot.val()
+    console.log(employee);
+
 
     let nameTd = $('<td>' + employee.name + '</td>')
     let roleTd = $('<td>' + employee.role + '</td>')
     let startTd = $('<td>' + employee.startDate + '</td>')
     let rateTd = $('<td>' + employee.rate + '</td>')
-    
+
     let row = $('<tr>');
     row.append(nameTd)
     row.append(roleTd)
@@ -48,6 +51,8 @@ database.ref().on('value', function(snapshot) {
     row.append(rateTd)
 
     $('#table-body').append(row);
-    
+
+
+
 })
 
