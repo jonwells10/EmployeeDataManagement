@@ -1,0 +1,12 @@
+Current Employee Table
+    Name
+    Role
+    Start date
+    months worked
+    monthly rate
+    total billed
+
+Add Employee Form
+    Namerole
+    Start Date
+    monthly rate
