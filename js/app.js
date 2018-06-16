@@ -38,10 +38,8 @@ database.ref().on('child_added', function (snapshot) {
 
     let employee = snapshot.val()
 
-    console.log(employee);
-    
-
-    let numMonths = moment().diff(moment(employee.startDate), 'months')
+    let dateObj = moment(employee.startDate, 'MM-DD-YYYY');
+    let numMonths = moment().diff(dateObj, 'months')
     let rate = parseInt(employee.rate);
     let total = numMonths * rate;
 
