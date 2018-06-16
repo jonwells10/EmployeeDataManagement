@@ -18,10 +18,14 @@ $(document).ready(function () {
 
         let name = $('#name-input').val();
         let role = $('#role-input').val();
-        let startDate = $('#start-input').val();
+        let startDate = moment($('#start-input').val().trim());
         let rate = $('#rate-input').val();
 
         console.log(name);
+
+        if (!startDate.isValid()) {
+            return
+        }
 
         database.ref().push({
             name: name,
@@ -36,8 +40,6 @@ $(document).ready(function () {
 database.ref().on('child_added', function (snapshot) {
 
     let employee = snapshot.val()
-    console.log(employee);
-
 
     let nameTd = $('<td>' + employee.name + '</td>')
     let roleTd = $('<td>' + employee.role + '</td>')
