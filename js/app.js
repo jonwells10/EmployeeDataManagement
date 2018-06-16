@@ -23,6 +23,7 @@ $(document).ready(function () {
 
         console.log(name);
         console.log(startDate);
+        console.log(typeof(startDate))
 
         database.ref().push({
             name: name,
@@ -38,8 +39,10 @@ database.ref().on('child_added', function (snapshot) {
 
     let employee = snapshot.val()
 
-    let dateObj = moment(employee.startDate, 'MM-DD-YYYY');
+    let dateObj = moment(employee.startDate, 'YYYY-MM-DD');
+    console.log(dateObj);
     let numMonths = moment().diff(dateObj, 'months')
+    console.log(numMonths)
     let rate = parseInt(employee.rate);
     let total = numMonths * rate;
 
